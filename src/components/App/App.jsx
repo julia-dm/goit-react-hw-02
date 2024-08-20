@@ -18,12 +18,6 @@ export default function App() {
     window.localStorage.setItem('feedback-values', JSON.stringify(values));
   }, [values]);
 
-  const reviews = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-
   const updateFeedback = (feedbackType) => {
     setValues({
       ...values,
@@ -44,21 +38,23 @@ export default function App() {
       <Description />
       <Options
         onFeedbackClick={(feedbackType) => updateFeedback(feedbackType)}
-        resetBtn={resetBtn}
-        resetFeedback={totalFeedback > 0}
+        onResetFeedback={resetBtn}
+        feedbackCount={totalFeedback > 0}
       />
 
-      {totalFeedback ===0  && <Notification>No feedback yet</Notification>}
 
-      {totalFeedback > 0 && (
-        <div>
-          <Feedback
-            feedbackVal={values}
-            feedbackTotal={totalFeedback}
-            feedbackPositive={positivePercentage}
-          />
-        </div>
-      )}
+{totalFeedback >0 ? (
+  <div>
+  <Feedback
+    feedbackVal={values}
+    feedbackTotal={totalFeedback}
+    feedbackPositive={positivePercentage}
+  />
+</div>
+) : (
+  <Notification>No feedback yet</Notification>
+)}
+
     </div>
   );
 }

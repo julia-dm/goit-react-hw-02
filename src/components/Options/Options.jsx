@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from '../Options/Options.module.css'
 
-export default function Options({ onFeedbackClick, resetBtn, resetFeedback }) {
+export default function Options({ onFeedbackClick, onResetFeedback, feedbackCount }) {
   return (
     <ul className={styles.buttonList}>
       <li>
@@ -19,9 +19,9 @@ export default function Options({ onFeedbackClick, resetBtn, resetFeedback }) {
           Bad
         </button>
       </li>
-      {resetFeedback && (
+      {feedbackCount && (
         <li>
-          <button onClick={resetBtn}>
+          <button onClick={onResetFeedback}>
             Reset
           </button>
         </li>
